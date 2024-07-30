@@ -1,0 +1,16 @@
+name: "pyhsslms"
+description:
+    "HSS/LMS Hash-based Digital Signatures"
+
+third_party {
+homepage: "https://github.com/russhousley/pyhsslms"
+  identifier {
+    type: "Git"
+    value: "https://github.com/russhousley/pyhsslms"
+    primary_source: true
+    version: "2.0.0"
+  }
+  version: "2.0.0"
+  last_upgrade_date { year: 2024 month: 7 day: 30 }
+  license_type: NOTICE
+}
