@@ -1,0 +1,79 @@
+
+Revision 1.0.0, released 4-May-2020
+-----------------------------------
+
+- Initial release.
+
+
+Revision 1.0.1, released 14-Jul-2020
+------------------------------------
+
+- Use os.urandom instead of secrets, which is not available until Python3.6.
+
+
+Revision 1.0.2, released 8-Apr-2021
+------------------------------------
+
+- Prepare for parameter sets that use SHAKE256:
+  -- Use pycryptodomex before Python3.6.
+  -- Use hashlib for Python3.6 and later.
+  -- Add tests for SHA256 and SHAKE256.
+
+- Clean up the random number generation:
+  -- Use os.urandom before Python3.6.
+  -- Use secrets.token_bytes for Python3.6 and later.
+
+
+Revision 1.1.0, released 3-Jun-2021
+------------------------------------
+
+- Add parameter sets that use SHA-256/192 and SHAKE256 from
+  draft-fluhrer-lms-more-parm-sets-05, which includes the
+  IANA-assigned identifiers.
+
+- Refactor unit tests that use files to ensure that files are deleted,
+  even when the test fail.
+
+- Fix bug in HssLmsPublicKey.verifyFile().
+
+
+Revision 1.1.1, released 9-Jan-2023
+------------------------------------
+
+- Output the maximum number of signatures that can be produced with a
+  private key (Contribution by sebastien-riou).
+  
+- Correct bug related to the --trunc command line argument (Contribution
+  by sebastien-riou).
+
+- Make it easier to run test from the command line (Contribution by
+  sebastien-riou).
+
+
+Revision 2.0.0, released 26-Oct-2023
+------------------------------------
+
+- HssPrivateKey serialization supports significantly larger tree sizes.
+  Previous approach allowed for a total of (2**32)-1 signature.  This
+  change does not break compatibility for private keys generated using
+  the old serialization scheme (Contribution by joshuayuen99).
+
+- Generate the LMOTS public key from a given LMOTS private key using
+  the approach documented in RFC 8554 (Contribution by joshuayuen99).
+
+- Correctly sign messages with LMOTS private keys (Contribution by
+  joshuayuen99).
+
+- Correctly calculate the the size of the LMOTS public key during
+  deserialization (Contribution by joshuayuen99).
+
+- Refactor "S" argument within LmotsSignature, LmotsPrivateKey, and
+  LmotsPublicKey to "I" and "q" arguments to align with RFC 8554
+  (Contribution by joshuayuen99).
+
+- Add tests for the coef function.
+
+- Include support for Classifier: Python 3.9, Python 3.10, Python 3.11,
+  and Python 3.12.
+
+- Update copyright.
