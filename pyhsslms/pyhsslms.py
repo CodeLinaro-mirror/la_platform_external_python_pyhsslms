@@ -812,10 +812,10 @@ class HssSignature():
     @classmethod
     def deserialize(cls, buffer):
         if len(buffer) < 4:
-            ValueError(err_bad_length, str(len(buffer)))
+            raise ValueError(err_bad_length, str(len(buffer)))
         levels = int32(buffer[0:4]) + 1
         if levels < 1 or levels > MaxHssLevels:
-            ValueError(err_bad_number_of_levels, str(levels))
+            raise ValueError(err_bad_number_of_levels, str(levels))
         siglist = []
         publist = []
         rest = buffer[4:]
@@ -830,7 +830,7 @@ class HssSignature():
             publist.append(lms_pub)
         length = LmsSignature.sizeof(rest)
         if len(rest) != length:
-            ValueError(err_bad_length, str(len(buffer)))
+            raise ValueError(err_bad_length, str(len(buffer)))
         msg_sig = LmsSignature.deserialize(rest[0:length])
         return cls(levels, publist, siglist, msg_sig)
 
